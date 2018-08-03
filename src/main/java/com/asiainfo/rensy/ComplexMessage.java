@@ -1,6 +1,7 @@
 package com.asiainfo.rensy;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -59,13 +60,88 @@ public class ComplexMessage {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+//        try {
+//
+//            message.setContent(body,"text/html;charset=UTF-8");
+//
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
+        //
+        // This HTML mail have to 2 part, the BODY and the embedded image
+        //
+        MimeMultipart multipart = new MimeMultipart("related");
+
+        // first part  (the html)
+        BodyPart messageBodyPart = new MimeBodyPart();
+        String htmlText = "<h4>HTML+附件+内嵌图片的邮件测试！！！</h4></br><a href=http://www.apache.org>" + "点击跳转</a>" +
+                "<h4>LOGO图标</h4></hr><img src=\"cid:logo\">" +
+                "<h4>哈士奇</h4></hr><img src=\"cid:image\">";
         try {
-            //message.setText("Hello");
-            message.setContent(body,"text/html;charset=UTF-8");
+            messageBodyPart.setContent(htmlText, "text/html;charset=UTF-8");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // add it
+        try {
+            multipart.addBodyPart(messageBodyPart);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // second part (the image)
+        messageBodyPart = new MimeBodyPart();
+        DataSource fds = new FileDataSource(".\\logo.gif");
+        //DataSource fds2 = new FileDataSource("F:\\idea\\mail\\1334828415340.jpg");
+        try {
+            messageBodyPart.setDataHandler(new DataHandler(fds));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        try {
+            messageBodyPart.setHeader("Content-ID","<logo>");
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+
+        // add it
+        try {
+            multipart.addBodyPart(messageBodyPart);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // th part (the image)
+        messageBodyPart = new MimeBodyPart();
+        DataSource fds2 = new FileDataSource(".\\1334828415340.jpg");
+        try {
+            messageBodyPart.setDataHandler(new DataHandler(fds2));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        try {
+            messageBodyPart.setHeader("Content-ID","<image>");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // add it
+        try {
+            multipart.addBodyPart(messageBodyPart);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // put everything together
+        try {
+            message.setContent(multipart);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
 
         try {
             Transport.send(message);
