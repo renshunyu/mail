@@ -756,7 +756,7 @@
       <option name="presentableId" value="Default" />
       <updated>1533271085652</updated>
       <workItem from="1533271092735" duration="9095000" />
-      <workItem from="1533303373665" duration="5341000" />
+      <workItem from="1533303373665" duration="5367000" />
     </task>
     <task id="LOCAL-00001" summary="发送带两张图片的邮件">
       <created>1533340151573</created>
@@ -765,11 +765,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533340151573</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="发送带两张图片的邮件">
+      <created>1533340187418</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1533340187418</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14436000" />
+    <option name="totallyTimeSpent" value="14462000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
