@@ -10,7 +10,9 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created by lining on 2018/5/26.
+ *
+ * @author rensy
+ * @date 2018/5/26
  */
 public class ComplexMessage {
     private static final String NICKNAME = "李宁";
@@ -30,8 +32,8 @@ public class ComplexMessage {
         String attach = "D:\\TXT\\CMD命令.txt;D:\\TXT\\常用MYSQL语句.txt";
 
         Map<String,String> imagesMap = new HashMap<String,String>();
-        imagesMap.put("logo","D:\\asf_logo_wide.gif");
-        imagesMap.put("image","D:\\哈士奇.jpg");
+        imagesMap.put("logo","E:\\idea\\mail\\logo.gif");
+        imagesMap.put("image","E:\\idea\\mail\\Jellyfish.jpg");
 
         Properties props = new Properties();
         props.put("mail.smtp.host","mail.asiainfo-sec.com");
@@ -58,7 +60,9 @@ public class ComplexMessage {
             e.printStackTrace();
         }
         try {
-            message.setText("Hello");
+            //message.setText("Hello");
+            message.setContent(body,"text/html;charset=UTF-8");
+
         } catch (MessagingException e) {
             e.printStackTrace();
         }
